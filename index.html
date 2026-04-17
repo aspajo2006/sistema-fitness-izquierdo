@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Entrenamiento | I.E. Francisco Izquierdo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    
+    <nav class="navbar">
+        <div class="logo">F.<span>IZQUIERDO</span></div>
+        <div class="project-tag">PROYECTO ANTI-SEDENTARISMO</div>
+        <div class="user-stats">
+            <div class="stat-item"><i class="fas fa-award"></i> <span id="points-val">0</span> XP</div>
+        </div>
+    </nav>
+
+    <header class="main-header">
+        <h1>SISTEMA DE ENTRENAMIENTO FÍSICO</h1>
+        <p>Promoviendo la salud en el 5to Año de Secundaria - Distrito de Morales</p>
+    </header>
+
+    <main class="container">
+        <section class="rank-card">
+            <h3>NIVEL DE ACTIVIDAD</h3>
+            <h1 id="rank-name">INICIANTE</h1>
+            <div class="progress-container">
+                <div class="progress-fill" id="xp-bar"></div>
+            </div>
+            <p>Meta: <span id="next-rank">ESTUDIANTE ACTIVO</span></p>
+        </section>
+
+        <div class="grid">
+            <section class="card-section">
+                <h3><i class="fas fa-running"></i> Programa de Entrenamiento</h3>
+                <div class="task-card" onclick="completeTask(50, 'Movilidad Articular')">
+                    <div class="task-info">
+                        <h4>Movilidad Articular</h4>
+                        <small>Calentamiento preventivo - 10 min</small>
+                    </div>
+                    <div class="task-xp">+50 XP</div>
+                </div>
+                <div class="task-card" onclick="completeTask(100, 'Circuito de Fuerza')">
+                    <div class="task-info">
+                        <h4>Circuito de Fuerza</h4>
+                        <small>Ejercicios funcionales - 25 min</small>
+                    </div>
+                    <div class="task-xp">+100 XP</div>
+                </div>
+            </section>
+
+            <section class="card-section">
+                <h3><i class="fas fa-book-medical"></i> Registro de Actividad</h3>
+                <div class="info-box">
+                    <h4>¿Por qué entrenar?</h4>
+                    <p>El sedentarismo afecta el rendimiento académico. ¡Completa tus rutinas diarias para mejorar tu salud y sumar puntos en el sistema!</p>
+                    <button class="btn-action" onclick="showTip()">CONSEJO DE SALUD</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

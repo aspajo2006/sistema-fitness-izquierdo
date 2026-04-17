@@ -10,144 +10,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        .auth-wrapper {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .auth-card {
-            background: var(--card);
-            border: 1px solid #333;
-            border-radius: 16px;
-            padding: 40px;
-            width: 100%;
-            max-width: 420px;
-        }
-        .auth-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .auth-logo span { color: var(--primary); }
-        .auth-subtitle {
-            text-align: center;
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 32px;
-        }
-        .auth-tabs {
-            display: flex;
-            gap: 0;
-            margin-bottom: 28px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #333;
-        }
-        .auth-tab {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: #888;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .auth-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 6px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px 14px;
-            background: #0d1117;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            transition: border-color 0.2s;
-            outline: none;
-        }
-        .form-group input:focus {
-            border-color: var(--primary);
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 13px;
-            background: var(--primary);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            margin-top: 6px;
-            letter-spacing: 1px;
-        }
-        .btn-submit:hover { background: #c62d39; }
-        .btn-submit:active { transform: scale(0.98); }
-        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-        .auth-error {
-            background: rgba(230, 57, 70, 0.15);
-            border: 1px solid rgba(230, 57, 70, 0.4);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 0.85rem;
-            color: #ff6b6b;
-            margin-bottom: 16px;
-            display: none;
-        }
-        .auth-error.visible { display: block; }
-        .auth-success {
-            background: rgba(76, 175, 80, 0.15);
-            border: 1px solid rgba(76, 175, 80, 0.4);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 0.85rem;
-            color: #81c784;
-            margin-bottom: 16px;
-            display: none;
-        }
-        .auth-success.visible { display: block; }
+        .auth-wrapper { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:30px 20px; }
+        .auth-card { background:var(--card); border:1px solid #333; border-radius:16px; padding:36px 40px; width:100%; max-width:480px; }
+        .auth-logo { font-family:'Orbitron',sans-serif; font-size:1.4rem; font-weight:700; text-align:center; margin-bottom:6px; }
+        .auth-logo span { color:var(--primary); }
+        .auth-subtitle { text-align:center; color:#888; font-size:0.82rem; margin-bottom:28px; }
+        .auth-tabs { display:flex; margin-bottom:24px; border-radius:8px; overflow:hidden; border:1px solid #333; }
+        .auth-tab { flex:1; padding:10px; background:transparent; border:none; color:#888; font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; transition:background 0.2s,color 0.2s; }
+        .auth-tab.active { background:var(--primary); color:white; }
+        .form-group { margin-bottom:14px; }
+        .form-group label { display:block; font-size:0.75rem; color:#aaa; margin-bottom:5px; font-weight:600; letter-spacing:0.5px; }
+        .form-group input, .form-group select { width:100%; padding:11px 14px; background:#0d1117; border:1px solid #333; border-radius:8px; color:var(--text); font-family:'Poppins',sans-serif; font-size:0.88rem; transition:border-color 0.2s; outline:none; }
+        .form-group select option { background:#1a1a2e; }
+        .form-group input:focus, .form-group select:focus { border-color:var(--primary); }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .section-divider { font-size:0.72rem; color:#555; letter-spacing:1px; text-transform:uppercase; margin:18px 0 14px; display:flex; align-items:center; gap:10px; }
+        .section-divider::before, .section-divider::after { content:''; flex:1; height:1px; background:#333; }
+        .field-label { font-size:0.75rem; color:#aaa; font-weight:600; letter-spacing:0.5px; margin-bottom:8px; }
+        /* Selector sexo */
+        .gender-group { display:flex; gap:10px; margin-bottom:14px; }
+        .gender-btn { flex:1; padding:12px 10px; background:#0d1117; border:1px solid #333; border-radius:8px; color:#888; font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; text-align:center; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:7px; }
+        .gender-btn:hover { border-color:#555; color:#ccc; }
+        .gender-btn.selected-m { border-color:#2196F3; color:#2196F3; background:rgba(33,150,243,0.08); }
+        .gender-btn.selected-f { border-color:#e91e8c; color:#e91e8c; background:rgba(233,30,140,0.08); }
+        /* Selector condición */
+        .condition-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
+        .condition-btn { padding:12px 6px; background:#0d1117; border:1px solid #333; border-radius:8px; color:#888; font-family:'Poppins',sans-serif; font-size:0.75rem; font-weight:600; cursor:pointer; text-align:center; transition:all 0.2s; line-height:1.4; }
+        .condition-btn .cond-icon { font-size:1.2rem; display:block; margin-bottom:4px; }
+        .condition-btn:hover { border-color:#555; color:#ccc; }
+        .condition-btn.selected { border-color:var(--primary); color:var(--primary); background:rgba(230,57,70,0.08); }
+        /* Submit */
+        .btn-submit { width:100%; padding:13px; background:var(--primary); border:none; border-radius:8px; color:white; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.9rem; cursor:pointer; transition:background 0.2s,transform 0.1s; margin-top:6px; letter-spacing:1px; }
+        .btn-submit:hover { background:#c62d39; }
+        .btn-submit:active { transform:scale(0.98); }
+        .btn-submit:disabled { opacity:0.6; cursor:not-allowed; }
+        .auth-error { background:rgba(230,57,70,0.15); border:1px solid rgba(230,57,70,0.4); border-radius:8px; padding:10px 14px; font-size:0.83rem; color:#ff6b6b; margin-bottom:14px; display:none; }
+        .auth-error.visible { display:block; }
+        .auth-success { background:rgba(76,175,80,0.15); border:1px solid rgba(76,175,80,0.4); border-radius:8px; padding:10px 14px; font-size:0.83rem; color:#81c784; margin-bottom:14px; display:none; }
+        .auth-success.visible { display:block; }
     </style>
 </head>
 <body>
     <div class="glow-bg" aria-hidden="true"></div>
-
     <div class="auth-wrapper">
         <div class="auth-card">
             <div class="auth-logo">F.<span>IZQUIERDO</span></div>
             <p class="auth-subtitle">PROYECTO ANTI-SEDENTARISMO</p>
-
             <div class="auth-tabs">
                 <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Iniciar Sesión</button>
                 <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrarse</button>
             </div>
-
             <div id="auth-error" class="auth-error"></div>
             <div id="auth-success" class="auth-success"></div>
 
-            <!-- Formulario de Login -->
+            <!-- LOGIN -->
             <div id="form-login">
                 <div class="form-group">
                     <label>EMAIL</label>
@@ -157,28 +73,57 @@
                     <label>CONTRASEÑA</label>
                     <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
                 </div>
-                <button class="btn-submit" id="btn-login" onclick="handleLogin()">
-                    ENTRAR AL SISTEMA
-                </button>
+                <button class="btn-submit" id="btn-login" onclick="handleLogin()">ENTRAR AL SISTEMA</button>
             </div>
 
-            <!-- Formulario de Registro -->
+            <!-- REGISTRO -->
             <div id="form-register" style="display:none">
+                <div class="section-divider">Datos personales</div>
                 <div class="form-group">
                     <label>NOMBRE COMPLETO</label>
                     <input type="text" id="reg-name" placeholder="Ej: Juan Pérez" autocomplete="name">
                 </div>
-                <div class="form-group">
-                    <label>EMAIL</label>
-                    <input type="email" id="reg-email" placeholder="tu@email.com" autocomplete="email">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>EMAIL</label>
+                        <input type="email" id="reg-email" placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>EDAD</label>
+                        <input type="number" id="reg-age" placeholder="Ej: 16" min="10" max="25">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>CONTRASEÑA</label>
                     <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
                 </div>
-                <button class="btn-submit" id="btn-register" onclick="handleRegister()">
-                    CREAR CUENTA
-                </button>
+
+                <div class="section-divider">Perfil físico</div>
+
+                <div class="field-label">SEXO</div>
+                <div class="gender-group">
+                    <button type="button" class="gender-btn" data-val="masculino" onclick="selectGender(this)">
+                        <i class="fas fa-mars"></i> Masculino
+                    </button>
+                    <button type="button" class="gender-btn" data-val="femenino" onclick="selectGender(this)">
+                        <i class="fas fa-venus"></i> Femenino
+                    </button>
+                </div>
+
+                <div class="field-label">CONDICIÓN FÍSICA ACTUAL</div>
+                <div class="condition-grid">
+                    <button type="button" class="condition-btn" data-val="sedentario" onclick="selectCondition(this)">
+                        <span class="cond-icon">🛋️</span>Sedentario
+                    </button>
+                    <button type="button" class="condition-btn" data-val="poco_activo" onclick="selectCondition(this)">
+                        <span class="cond-icon">🚶</span>Poco activo
+                    </button>
+                    <button type="button" class="condition-btn" data-val="activo" onclick="selectCondition(this)">
+                        <span class="cond-icon">🏃</span>Activo
+                    </button>
+                </div>
+
+                <button class="btn-submit" id="btn-register" onclick="handleRegister()">CREAR CUENTA</button>
             </div>
         </div>
     </div>
@@ -186,7 +131,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
     <script>
-        // Redirigir si ya hay sesión activa
+        let selectedGender = null, selectedCondition = null;
+
         supabaseClient.auth.getSession().then(({ data: { session } }) => {
             if (session) redirectAfterLogin(session.user);
         });
@@ -199,108 +145,58 @@
             clearMessages();
         }
 
-        function showError(msg) {
-            const el = document.getElementById('auth-error');
-            el.textContent = msg;
-            el.classList.add('visible');
-            document.getElementById('auth-success').classList.remove('visible');
+        function selectGender(btn) {
+            document.querySelectorAll('.gender-btn').forEach(b => b.className = 'gender-btn');
+            selectedGender = btn.dataset.val;
+            btn.classList.add(selectedGender === 'masculino' ? 'selected-m' : 'selected-f');
         }
 
-        function showSuccess(msg) {
-            const el = document.getElementById('auth-success');
-            el.textContent = msg;
-            el.classList.add('visible');
-            document.getElementById('auth-error').classList.remove('visible');
+        function selectCondition(btn) {
+            document.querySelectorAll('.condition-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedCondition = btn.dataset.val;
         }
 
-        function clearMessages() {
-            document.getElementById('auth-error').classList.remove('visible');
-            document.getElementById('auth-success').classList.remove('visible');
-        }
+        function showError(msg)   { const e=document.getElementById('auth-error');   e.textContent=msg; e.classList.add('visible'); document.getElementById('auth-success').classList.remove('visible'); }
+        function showSuccess(msg) { const e=document.getElementById('auth-success'); e.textContent=msg; e.classList.add('visible'); document.getElementById('auth-error').classList.remove('visible'); }
+        function clearMessages()  { document.getElementById('auth-error').classList.remove('visible'); document.getElementById('auth-success').classList.remove('visible'); }
 
         async function handleLogin() {
-            const email    = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
-            const btn      = document.getElementById('btn-login');
-
-            if (!email || !password) return showError('Completa todos los campos.');
-
-            btn.disabled = true;
-            btn.textContent = 'ENTRANDO...';
-
+            const email=document.getElementById('login-email').value.trim(), password=document.getElementById('login-password').value, btn=document.getElementById('btn-login');
+            if (!email||!password) return showError('Completa todos los campos.');
+            btn.disabled=true; btn.textContent='ENTRANDO...';
             const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-
-            if (error) {
-                showError('Correo o contraseña incorrectos.');
-                btn.disabled = false;
-                btn.textContent = 'ENTRAR AL SISTEMA';
-                return;
-            }
-
+            if (error) { showError('Correo o contraseña incorrectos.'); btn.disabled=false; btn.textContent='ENTRAR AL SISTEMA'; return; }
             redirectAfterLogin(data.user);
         }
 
         async function handleRegister() {
-            const name     = document.getElementById('reg-name').value.trim();
-            const email    = document.getElementById('reg-email').value.trim();
-            const password = document.getElementById('reg-password').value;
-            const btn      = document.getElementById('btn-register');
-
-            if (!name || !email || !password) return showError('Completa todos los campos.');
-            if (password.length < 6) return showError('La contraseña debe tener al menos 6 caracteres.');
-
-            btn.disabled = true;
-            btn.textContent = 'CREANDO CUENTA...';
-
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-                options: { data: { full_name: name } }
-            });
-
-            if (error) {
-                showError('Error al crear cuenta: ' + error.message);
-                btn.disabled = false;
-                btn.textContent = 'CREAR CUENTA';
-                return;
-            }
-
-            // Crear perfil en la tabla profiles
+            const name=document.getElementById('reg-name').value.trim(), email=document.getElementById('reg-email').value.trim(),
+                  password=document.getElementById('reg-password').value, age=parseInt(document.getElementById('reg-age').value), btn=document.getElementById('btn-register');
+            if (!name||!email||!password||!age) return showError('Completa todos los campos.');
+            if (password.length<6)              return showError('La contraseña debe tener al menos 6 caracteres.');
+            if (!selectedGender)                return showError('Selecciona tu sexo.');
+            if (!selectedCondition)             return showError('Selecciona tu condición física.');
+            if (age<10||age>25)                 return showError('Edad válida: 10 a 25 años.');
+            btn.disabled=true; btn.textContent='CREANDO CUENTA...';
+            const { data, error } = await supabaseClient.auth.signUp({ email, password, options:{ data:{ full_name:name } } });
+            if (error) { showError('Error: '+error.message); btn.disabled=false; btn.textContent='CREAR CUENTA'; return; }
             if (data.user) {
-                await supabaseClient.from('profiles').upsert({
-                    id: data.user.id,
-                    full_name: name,
-                    email: email,
-                    xp: 0
-                });
+                await supabaseClient.from('profiles').upsert({ id:data.user.id, full_name:name, email, age, gender:selectedGender, condition:selectedCondition, xp:0, is_admin:false });
             }
-
-            showSuccess('¡Cuenta creada! Revisa tu email para confirmar (o inicia sesión directamente).');
-            btn.disabled = false;
-            btn.textContent = 'CREAR CUENTA';
+            showSuccess('¡Cuenta creada! Inicia sesión para comenzar.');
+            btn.disabled=false; btn.textContent='CREAR CUENTA';
+            setTimeout(()=>switchTab('login'), 1800);
         }
 
         async function redirectAfterLogin(user) {
-            // Verificar si es admin
-            const { data: profile } = await supabaseClient
-                .from('profiles')
-                .select('is_admin')
-                .eq('id', user.id)
-                .single();
-
-            if (profile?.is_admin) {
-                window.location.href = 'admin.html';
-            } else {
-                window.location.href = 'index.html';
-            }
+            const { data:profile } = await supabaseClient.from('profiles').select('is_admin').eq('id',user.id).single();
+            window.location.href = profile?.is_admin ? 'admin.html' : 'index.html';
         }
 
-        // Enter para enviar
         document.addEventListener('keydown', e => {
-            if (e.key === 'Enter') {
-                const loginVisible = document.getElementById('form-login').style.display !== 'none';
-                if (loginVisible) handleLogin(); else handleRegister();
-            }
+            if (e.key!=='Enter') return;
+            document.getElementById('form-login').style.display!=='none' ? handleLogin() : handleRegister();
         });
     </script>
 </body>

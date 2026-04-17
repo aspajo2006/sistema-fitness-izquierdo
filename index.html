@@ -15,67 +15,118 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <div class="glow-bg" aria-hidden="true"></div>
 
-    <nav class="navbar" aria-label="Navegación principal">
-        <div class="logo" aria-label="I.E. Francisco Izquierdo">F.<span>IZQUIERDO</span></div>
-        <div class="project-tag" aria-hidden="true">PROYECTO ANTI-SEDENTARISMO</div>
-        <div class="user-stats" style="display:flex; gap:16px; align-items:center;">
+    <nav class="navbar">
+        <div class="logo">F.<span>IZQUIERDO</span></div>
+        <div class="project-tag">PROYECTO ANTI-SEDENTARISMO</div>
+        <div class="user-stats">
             <div class="stat-item">
                 <i class="fas fa-award" aria-hidden="true"></i>
-                <span id="points-val" aria-label="Puntos XP">0</span> XP
+                <span id="points-val">0</span> XP
             </div>
-            <button id="btn-logout" onclick="logout()" style="
-                background:transparent; border:1px solid #444; color:#888;
-                padding:5px 12px; border-radius:6px; font-family:'Poppins',sans-serif;
-                font-size:0.75rem; cursor:pointer; display:none;
-            ">Salir</button>
+            <button id="btn-logout" style="display:none; background:transparent; border:1px solid #444; color:#888; padding:5px 12px; border-radius:6px; font-family:'Poppins',sans-serif; font-size:0.75rem; cursor:pointer;">Salir</button>
         </div>
     </nav>
 
     <header class="main-header">
         <h1>SISTEMA DE ENTRENAMIENTO FÍSICO</h1>
-        <p id="user-greeting">Promoviendo la salud en el 5to Año de Secundaria - Distrito de Morales</p>
+        <p id="user-greeting">Cargando...</p>
     </header>
 
     <main class="container">
-        <section class="rank-card" aria-labelledby="rank-section-title">
-            <h2 id="rank-section-title">NIVEL DE ACTIVIDAD</h2>
+
+        <!-- NIVEL Y XP -->
+        <section class="rank-card">
+            <h2>NIVEL DE ACTIVIDAD</h2>
             <p id="rank-name" class="rank-display">INICIANTE</p>
-            <div class="progress-container" role="progressbar" aria-label="Progreso de XP" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-container" role="progressbar" aria-label="Progreso XP" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-fill" id="xp-bar"></div>
             </div>
             <p>Meta: <span id="next-rank">ESTUDIANTE ACTIVO</span></p>
         </section>
 
+        <!-- RETO SEMANAL -->
+        <section class="weekly-challenge-card" id="weekly-section">
+            <div class="wc-header">
+                <div>
+                    <h2 class="wc-title"><i class="fas fa-fire"></i> RETO SEMANAL</h2>
+                    <p id="wc-desc" class="wc-desc">Cargando reto...</p>
+                </div>
+                <div class="wc-reward">
+                    <span id="wc-xp" class="wc-xp-badge">+0 XP</span>
+                    <span id="wc-deadline" class="wc-days"></span>
+                </div>
+            </div>
+            <div class="wc-progress-wrap">
+                <div class="wc-progress-bar">
+                    <div class="wc-progress-fill" id="wc-bar"></div>
+                </div>
+                <span id="wc-progress-label" class="wc-progress-label">0 / 0</span>
+            </div>
+        </section>
+
         <div class="grid">
-            <section class="card-section" aria-labelledby="training-title">
-                <h3 id="training-title"><i class="fas fa-running" aria-hidden="true"></i> Programa de Entrenamiento</h3>
-
-                <button class="task-card" data-xp="50" data-name="Movilidad Articular" data-task-id="movilidad">
-                    <div class="task-info">
-                        <h4>Movilidad Articular</h4>
-                        <small>Calentamiento preventivo - 10 min</small>
-                    </div>
-                    <div class="task-xp">+50 XP</div>
-                </button>
-
-                <button class="task-card" data-xp="100" data-name="Circuito de Fuerza" data-task-id="circuito">
-                    <div class="task-info">
-                        <h4>Circuito de Fuerza</h4>
-                        <small>Ejercicios funcionales - 25 min</small>
-                    </div>
-                    <div class="task-xp">+100 XP</div>
-                </button>
+            <!-- PROGRAMA DE ENTRENAMIENTO -->
+            <section class="card-section">
+                <h3><i class="fas fa-running"></i> Programa de Entrenamiento</h3>
+                <div id="tasks-container">
+                    <!-- Generado por JS según condición del usuario -->
+                </div>
             </section>
 
-            <section class="card-section" aria-labelledby="tips-title">
-                <h3 id="tips-title"><i class="fas fa-book-medical" aria-hidden="true"></i> Registro de Actividad</h3>
-                <div class="info-box">
-                    <h4>¿Por qué entrenar?</h4>
-                    <p>El sedentarismo afecta el rendimiento académico. ¡Completa tus rutinas diarias para mejorar tu salud y sumar puntos en el sistema!</p>
-                    <button class="btn-action" id="btn-tip">CONSEJO DE SALUD</button>
+            <!-- REGISTRO DE ACTIVIDAD DIARIA -->
+            <section class="card-section">
+                <h3><i class="fas fa-calendar-check"></i> Actividad de Hoy</h3>
+                <div id="daily-log-card" class="daily-log">
+                    <div class="log-row">
+                        <label class="log-label">Pasos caminados</label>
+                        <div class="log-input-wrap">
+                            <input type="number" id="log-steps" placeholder="Ej: 3000" min="0" class="log-input">
+                            <button class="log-save-btn" onclick="saveLog()"><i class="fas fa-save"></i></button>
+                        </div>
+                    </div>
+                    <div class="log-row">
+                        <label class="log-label">Minutos activo</label>
+                        <div class="log-input-wrap">
+                            <input type="number" id="log-minutes" placeholder="Ej: 30" min="0" class="log-input">
+                        </div>
+                    </div>
+                    <div class="log-row">
+                        <label class="log-label">Agua tomada (vasos)</label>
+                        <div class="log-input-wrap">
+                            <input type="number" id="log-water" placeholder="Ej: 6" min="0" max="20" class="log-input">
+                        </div>
+                    </div>
+                    <div id="log-saved-msg" style="display:none; margin-top:10px; font-size:0.8rem; color:#4caf50;">
+                        <i class="fas fa-check-circle"></i> Actividad guardada
+                    </div>
+                </div>
+
+                <!-- Consejo de salud -->
+                <div class="info-box" style="margin-top:16px;">
+                    <h4>Consejo de salud</h4>
+                    <p id="tip-text" style="font-size:0.85rem; color:#ccc; margin-top:6px; line-height:1.6;">Haz clic para recibir un consejo.</p>
+                    <button class="btn-action" id="btn-tip">NUEVO CONSEJO</button>
                 </div>
             </section>
         </div>
+
+        <!-- VIDEOS GUIADOS -->
+        <section class="card-section" style="margin-top:20px;">
+            <h3><i class="fas fa-play-circle"></i> Videos Guiados</h3>
+            <p style="font-size:0.82rem; color:#888; margin-bottom:16px;" id="videos-subtitle">Ejercicios recomendados para tu nivel</p>
+            <div class="videos-grid" id="videos-grid">
+                <!-- Generado por JS -->
+            </div>
+        </section>
+
+        <!-- RECOMPENSAS -->
+        <section class="card-section rewards-section" style="margin-top:20px;">
+            <h3><i class="fas fa-trophy"></i> Recompensas</h3>
+            <div class="rewards-grid" id="rewards-grid">
+                <!-- Generado por JS -->
+            </div>
+        </section>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -10,157 +10,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            border-bottom: 2px solid var(--primary);
-            background: rgba(0,0,0,0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .admin-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--primary);
-        }
-        .btn-logout {
-            background: transparent;
-            border: 1px solid #555;
-            color: #aaa;
-            padding: 7px 16px;
-            border-radius: 6px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .btn-logout:hover { border-color: var(--primary); color: var(--text); }
-
-        .admin-container {
-            width: 95%;
-            max-width: 1000px;
-            margin: 40px auto;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin-bottom: 36px;
-        }
-        .stat-card {
-            background: var(--card);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .stat-card .stat-num {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .stat-card .stat-label {
-            font-size: 0.75rem;
-            color: #888;
-            margin-top: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            color: #aaa;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 11px 16px;
-            background: var(--card);
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-bar:focus { border-color: var(--primary); }
-
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-        }
-        .users-table thead tr {
-            border-bottom: 2px solid var(--primary);
-        }
-        .users-table th {
-            padding: 12px 16px;
-            text-align: left;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: #888;
-            font-weight: 600;
-        }
-        .users-table tbody tr {
-            border-bottom: 1px solid #222;
-            transition: background 0.15s;
-        }
-        .users-table tbody tr:hover { background: rgba(255,255,255,0.03); }
-        .users-table td {
-            padding: 14px 16px;
-            color: var(--text);
-        }
-        .user-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-            margin-right: 10px;
-            vertical-align: middle;
-            flex-shrink: 0;
-        }
-        .rank-badge {
-            font-size: 0.72rem;
-            padding: 3px 10px;
-            border-radius: 999px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        .rank-0 { background: rgba(255,255,255,0.08); color: #aaa; }
-        .rank-1 { background: rgba(33,150,243,0.15); color: #64b5f6; }
-        .rank-2 { background: rgba(156,39,176,0.15); color: #ce93d8; }
-        .rank-3 { background: rgba(255,152,0,0.15); color: #ffb74d; }
-        .rank-4 { background: rgba(230,57,70,0.2); color: #ef9a9a; }
-
-        .xp-cell { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; color: var(--primary); }
-        .date-cell { color: #666; font-size: 0.8rem; }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #555;
-        }
-        .empty-state i { font-size: 2rem; margin-bottom: 12px; display: block; }
-
-        .loading-row td {
-            text-align: center;
-            padding: 40px;
-            color: #555;
-        }
+        .admin-header { display:flex; justify-content:space-between; align-items:center; padding:16px 5%; border-bottom:2px solid var(--primary); background:rgba(0,0,0,0.9); position:sticky; top:0; z-index:100; }
+        .admin-title { font-family:'Orbitron',sans-serif; font-size:0.95rem; color:var(--primary); }
+        .btn-logout { background:transparent; border:1px solid #555; color:#aaa; padding:7px 16px; border-radius:6px; font-family:'Poppins',sans-serif; font-size:0.8rem; cursor:pointer; transition:border-color 0.2s,color 0.2s; }
+        .btn-logout:hover { border-color:var(--primary); color:var(--text); }
+        .admin-container { width:95%; max-width:1100px; margin:36px auto 60px; }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-bottom:32px; }
+        .stat-card { background:var(--card); border:1px solid #333; border-radius:12px; padding:18px; text-align:center; }
+        .stat-card .stat-num { font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:700; color:var(--primary); }
+        .stat-card .stat-label { font-size:0.72rem; color:#888; margin-top:4px; letter-spacing:0.5px; }
+        .section-title { font-family:'Orbitron',sans-serif; font-size:0.82rem; color:#aaa; letter-spacing:2px; margin-bottom:14px; }
+        .search-bar { width:100%; padding:11px 16px; background:var(--card); border:1px solid #333; border-radius:8px; color:var(--text); font-family:'Poppins',sans-serif; font-size:0.88rem; margin-bottom:14px; outline:none; transition:border-color 0.2s; }
+        .search-bar:focus { border-color:var(--primary); }
+        .table-wrap { overflow-x:auto; }
+        .users-table { width:100%; border-collapse:collapse; font-size:0.83rem; min-width:700px; }
+        .users-table thead tr { border-bottom:2px solid var(--primary); }
+        .users-table th { padding:11px 14px; text-align:left; font-size:0.72rem; letter-spacing:1px; color:#888; font-weight:600; }
+        .users-table tbody tr { border-bottom:1px solid #1e1e1e; transition:background 0.15s; }
+        .users-table tbody tr:hover { background:rgba(255,255,255,0.03); }
+        .users-table td { padding:12px 14px; }
+        .user-avatar { width:32px; height:32px; border-radius:50%; background:var(--primary); display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:0.75rem; margin-right:9px; vertical-align:middle; flex-shrink:0; }
+        .rank-badge { font-size:0.7rem; padding:3px 9px; border-radius:999px; font-weight:600; white-space:nowrap; }
+        .rank-0 { background:rgba(255,255,255,0.07); color:#aaa; }
+        .rank-1 { background:rgba(33,150,243,0.15); color:#64b5f6; }
+        .rank-2 { background:rgba(156,39,176,0.15); color:#ce93d8; }
+        .rank-3 { background:rgba(255,152,0,0.15); color:#ffb74d; }
+        .rank-4 { background:rgba(230,57,70,0.2); color:#ef9a9a; }
+        .xp-cell { font-family:'Orbitron',sans-serif; font-size:0.82rem; color:var(--primary); }
+        .date-cell { color:#666; font-size:0.78rem; }
+        .gender-cell { font-size:0.82rem; }
+        .cond-badge { font-size:0.7rem; padding:2px 8px; border-radius:999px; background:rgba(255,255,255,0.07); color:#aaa; }
+        .cond-badge.sedentario { background:rgba(244,67,54,0.12); color:#ef9a9a; }
+        .cond-badge.poco_activo { background:rgba(255,152,0,0.12); color:#ffb74d; }
+        .cond-badge.activo { background:rgba(76,175,80,0.12); color:#81c784; }
+        .loading-row td { text-align:center; padding:40px; color:#555; }
+        .chart-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px; }
+        @media (max-width:600px) { .chart-row { grid-template-columns:1fr; } }
+        .mini-chart { background:var(--card); border:1px solid #333; border-radius:12px; padding:18px; }
+        .mini-chart h4 { font-size:0.78rem; color:#888; letter-spacing:1px; margin-bottom:14px; }
+        .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+        .bar-label { font-size:0.75rem; color:#aaa; width:90px; flex-shrink:0; }
+        .bar-track { flex:1; background:#111; border-radius:999px; height:8px; overflow:hidden; }
+        .bar-fill { height:100%; border-radius:999px; background:var(--primary); transition:width 0.5s ease; }
+        .bar-val { font-size:0.72rem; color:#888; width:28px; text-align:right; flex-shrink:0; }
     </style>
 </head>
 <body>
@@ -169,180 +61,161 @@
 
     <header class="admin-header">
         <div class="admin-title">⚡ PANEL ADMINISTRADOR</div>
-        <div style="display:flex; gap:12px; align-items:center;">
-            <span id="admin-name" style="font-size:0.8rem; color:#888;"></span>
-            <button class="btn-logout" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Salir
-            </button>
+        <div style="display:flex;gap:12px;align-items:center;">
+            <span id="admin-name" style="font-size:0.8rem;color:#888;"></span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
         </div>
     </header>
 
     <div class="admin-container">
-        <!-- Estadísticas generales -->
+
+        <!-- Stats generales -->
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-num" id="stat-total">—</div>
-                <div class="stat-label">USUARIOS TOTALES</div>
+            <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">USUARIOS TOTALES</div></div>
+            <div class="stat-card"><div class="stat-num" id="stat-active">—</div><div class="stat-label">CON XP &gt; 0</div></div>
+            <div class="stat-card"><div class="stat-num" id="stat-avg">—</div><div class="stat-label">XP PROMEDIO</div></div>
+            <div class="stat-card"><div class="stat-num" id="stat-top">—</div><div class="stat-label">XP MÁS ALTO</div></div>
+        </div>
+
+        <!-- Mini gráficas de distribución -->
+        <div class="chart-row">
+            <div class="mini-chart">
+                <h4>DISTRIBUCIÓN POR CONDICIÓN</h4>
+                <div id="chart-condition"></div>
             </div>
-            <div class="stat-card">
-                <div class="stat-num" id="stat-active">—</div>
-                <div class="stat-label">CON XP > 0</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" id="stat-avg">—</div>
-                <div class="stat-label">XP PROMEDIO</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" id="stat-top">—</div>
-                <div class="stat-label">XP MÁS ALTO</div>
+            <div class="mini-chart">
+                <h4>DISTRIBUCIÓN POR SEXO</h4>
+                <div id="chart-gender"></div>
             </div>
         </div>
 
-        <!-- Tabla de usuarios -->
+        <!-- Tabla usuarios -->
         <p class="section-title">USUARIOS REGISTRADOS</p>
-        <input
-            type="search"
-            class="search-bar"
-            id="search-input"
-            placeholder="Buscar por nombre o email..."
-            oninput="filterUsers()"
-        >
+        <input type="search" class="search-bar" id="search-input" placeholder="Buscar por nombre, email o condición..." oninput="filterUsers()">
 
-        <table class="users-table" aria-label="Lista de usuarios">
-            <thead>
-                <tr>
-                    <th>USUARIO</th>
-                    <th>EMAIL</th>
-                    <th>NIVEL</th>
-                    <th>XP</th>
-                    <th>REGISTRADO</th>
-                </tr>
-            </thead>
-            <tbody id="users-tbody">
-                <tr class="loading-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Cargando...</td></tr>
-            </tbody>
-        </table>
+        <div class="table-wrap">
+            <table class="users-table" aria-label="Lista de usuarios">
+                <thead>
+                    <tr>
+                        <th>USUARIO</th>
+                        <th>EDAD</th>
+                        <th>SEXO</th>
+                        <th>CONDICIÓN</th>
+                        <th>NIVEL</th>
+                        <th>XP</th>
+                        <th>REGISTRO</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody">
+                    <tr class="loading-row"><td colspan="7"><i class="fas fa-spinner fa-spin"></i> Cargando usuarios...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
     <script>
         const NIVELES = ["INICIANTE","ESTUDIANTE ACTIVO","GUERRERO F.I.","ATLETA MORALINO","ELITE SALUDABLE"];
-
         let allUsers = [];
-
-        function getRank(xp) {
-            return Math.min(Math.floor(xp / 200), NIVELES.length - 1);
-        }
-
-        function formatDate(dateStr) {
-            if (!dateStr) return '—';
-            return new Date(dateStr).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
-        }
-
-        function initials(name) {
-            if (!name) return '?';
-            return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-        }
-
-        // Mostrar toast
         let toastTimer;
+
         function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('visible');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => t.classList.remove('visible'), 3000);
+            const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('visible');
+            clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('visible'),3000);
         }
+        function getRank(xp)  { return Math.min(Math.floor((xp||0)/200),NIVELES.length-1); }
+        function initials(n)  { if(!n) return '?'; return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
+        function fmtDate(d)   { if(!d) return '—'; return new Date(d).toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'}); }
+        function genderLabel(g) { if(g==='masculino') return '👦 Masc.'; if(g==='femenino') return '👩 Fem.'; return '—'; }
+        function condLabel(c)   { const m={sedentario:'Sedentario',poco_activo:'Poco activo',activo:'Activo'}; return m[c]||c||'—'; }
 
         async function init() {
-            // Verificar sesión y que sea admin
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (!session) { window.location.href = 'login.html'; return; }
-
-            const { data: profile } = await supabaseClient
-                .from('profiles')
-                .select('is_admin, full_name')
-                .eq('id', session.user.id)
-                .single();
-
-            if (!profile?.is_admin) {
-                showToast('Acceso denegado.');
-                setTimeout(() => window.location.href = 'index.html', 1500);
-                return;
-            }
-
+            const { data:{ session } } = await supabaseClient.auth.getSession();
+            if (!session) { window.location.href='login.html'; return; }
+            const { data:profile } = await supabaseClient.from('profiles').select('is_admin,full_name').eq('id',session.user.id).single();
+            if (!profile?.is_admin) { showToast('Acceso denegado.'); setTimeout(()=>window.location.href='index.html',1500); return; }
             document.getElementById('admin-name').textContent = profile.full_name || session.user.email;
             loadUsers();
         }
 
         async function loadUsers() {
-            const { data, error } = await supabaseClient
-                .from('profiles')
-                .select('*')
-                .order('xp', { ascending: false });
-
-            if (error) {
-                document.getElementById('users-tbody').innerHTML =
-                    '<tr class="loading-row"><td colspan="5">Error al cargar usuarios.</td></tr>';
-                return;
-            }
-
+            const { data,error } = await supabaseClient.from('profiles').select('*').order('xp',{ascending:false});
+            if (error) { document.getElementById('users-tbody').innerHTML='<tr class="loading-row"><td colspan="7">Error al cargar.</td></tr>'; return; }
             allUsers = data || [];
             renderStats(allUsers);
+            renderCharts(allUsers);
             renderTable(allUsers);
         }
 
         function renderStats(users) {
-            const withXP = users.filter(u => u.xp > 0);
-            const avgXP  = users.length ? Math.round(users.reduce((s, u) => s + (u.xp || 0), 0) / users.length) : 0;
-            const topXP  = users.length ? Math.max(...users.map(u => u.xp || 0)) : 0;
-
+            const withXP = users.filter(u=>u.xp>0).length;
+            const avg    = users.length ? Math.round(users.reduce((s,u)=>s+(u.xp||0),0)/users.length) : 0;
+            const top    = users.length ? Math.max(...users.map(u=>u.xp||0)) : 0;
             document.getElementById('stat-total').textContent  = users.length;
-            document.getElementById('stat-active').textContent = withXP.length;
-            document.getElementById('stat-avg').textContent    = avgXP;
-            document.getElementById('stat-top').textContent    = topXP;
+            document.getElementById('stat-active').textContent = withXP;
+            document.getElementById('stat-avg').textContent    = avg;
+            document.getElementById('stat-top').textContent    = top;
+        }
+
+        function renderCharts(users) {
+            // Condición
+            const condCounts = { sedentario:0, poco_activo:0, activo:0 };
+            users.forEach(u => { if(condCounts[u.condition]!==undefined) condCounts[u.condition]++; });
+            const condMax = Math.max(...Object.values(condCounts),1);
+            document.getElementById('chart-condition').innerHTML = [
+                ['sedentario','Sedentario','#ef9a9a'],
+                ['poco_activo','Poco activo','#ffb74d'],
+                ['activo','Activo','#81c784']
+            ].map(([k,l,c])=>`
+                <div class="bar-row">
+                    <span class="bar-label">${l}</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:${(condCounts[k]/condMax*100)}%;background:${c}"></div></div>
+                    <span class="bar-val">${condCounts[k]}</span>
+                </div>`).join('');
+
+            // Sexo
+            const gCounts = { masculino:0, femenino:0 };
+            users.forEach(u => { if(gCounts[u.gender]!==undefined) gCounts[u.gender]++; });
+            const gMax = Math.max(...Object.values(gCounts),1);
+            document.getElementById('chart-gender').innerHTML = [
+                ['masculino','Masculino','#64b5f6'],
+                ['femenino','Femenino','#f48fb1']
+            ].map(([k,l,c])=>`
+                <div class="bar-row">
+                    <span class="bar-label">${l}</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:${(gCounts[k]/gMax*100)}%;background:${c}"></div></div>
+                    <span class="bar-val">${gCounts[k]}</span>
+                </div>`).join('');
         }
 
         function renderTable(users) {
             const tbody = document.getElementById('users-tbody');
-
-            if (!users.length) {
-                tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i class="fas fa-users-slash"></i>No hay usuarios aún.</div></td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = users.map(u => {
-                const rankIdx  = getRank(u.xp || 0);
-                const rankName = NIVELES[rankIdx];
-                return `
-                <tr>
-                    <td>
-                        <span class="user-avatar">${initials(u.full_name)}</span>
-                        ${u.full_name || 'Sin nombre'}
-                    </td>
-                    <td style="color:#aaa">${u.email || '—'}</td>
-                    <td><span class="rank-badge rank-${rankIdx}">${rankName}</span></td>
-                    <td class="xp-cell">${u.xp || 0} XP</td>
-                    <td class="date-cell">${formatDate(u.created_at)}</td>
+            if (!users.length) { tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;color:#555;">Sin resultados.</td></tr>'; return; }
+            tbody.innerHTML = users.map(u=>{
+                const ri=getRank(u.xp||0);
+                return `<tr>
+                    <td><span class="user-avatar">${initials(u.full_name)}</span>${u.full_name||'Sin nombre'}</td>
+                    <td>${u.age||'—'}</td>
+                    <td class="gender-cell">${genderLabel(u.gender)}</td>
+                    <td><span class="cond-badge ${u.condition||''}">${condLabel(u.condition)}</span></td>
+                    <td><span class="rank-badge rank-${ri}">${NIVELES[ri]}</span></td>
+                    <td class="xp-cell">${u.xp||0} XP</td>
+                    <td class="date-cell">${fmtDate(u.created_at)}</td>
                 </tr>`;
             }).join('');
         }
 
         function filterUsers() {
-            const q = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allUsers.filter(u =>
-                (u.full_name || '').toLowerCase().includes(q) ||
-                (u.email || '').toLowerCase().includes(q)
-            );
-            renderTable(filtered);
+            const q=document.getElementById('search-input').value.toLowerCase();
+            renderTable(allUsers.filter(u=>
+                (u.full_name||'').toLowerCase().includes(q)||
+                (u.email||'').toLowerCase().includes(q)||
+                (u.condition||'').toLowerCase().includes(q)
+            ));
         }
 
-        async function logout() {
-            await supabaseClient.auth.signOut();
-            window.location.href = 'login.html';
-        }
-
+        async function logout() { await supabaseClient.auth.signOut(); window.location.href='login.html'; }
         init();
     </script>
 </body>

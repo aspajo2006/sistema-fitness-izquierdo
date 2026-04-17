@@ -160,4 +160,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('btn-tip').addEventListener('click', showTip);
 
     updateUI();
-});
+});   

@@ -6,7 +6,14 @@
     --card: #1f2833;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s; }
+/* Reset solo donde se necesita, sin transition universal */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     background-color: var(--bg);
@@ -14,61 +21,246 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* ─── Toast (reemplaza los alert) ──────────────────────────────────────────── */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #2a2f3a;
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    font-size: 0.9rem;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ─── Fondo decorativo ──────────────────────────────────────────────────────── */
 .glow-bg {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(circle at 5% 5%, rgba(230, 57, 70, 0.1) 0%, transparent 50%);
     z-index: -1;
+    pointer-events: none;
 }
 
-/* Navbar */
+/* ─── Navbar ─────────────────────────────────────────────────────────────────── */
 .navbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 5%; background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(0, 0, 0, 0.9);
     border-bottom: 2px solid var(--primary);
-    position: sticky; top: 0; z-index: 100;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo { font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; }
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 .logo span { color: var(--primary); }
-.project-tag { font-size: 0.7rem; letter-spacing: 1px; color: #888; }
 
-/* Título */
-.main-header { text-align: center; padding: 40px 20px; }
-.main-header h1 { font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 10px; }
-.main-header p { color: #888; font-size: 0.9rem; }
-
-/* Contenedor */
-.container { width: 95%; max-width: 1200px; margin: auto; padding-bottom: 50px; }
-
-.rank-card {
-    background: var(--card); padding: 30px; border-radius: 15px;
-    text-align: center; margin-bottom: 30px; border: 1px solid #333;
+.project-tag {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #888;
 }
 
-.progress-container { background: #000; height: 15px; border-radius: 10px; margin: 20px 0; overflow: hidden; }
-.progress-fill { background: var(--primary); height: 100%; width: 0%; box-shadow: 0 0 10px var(--primary); }
+/* ─── Header principal ──────────────────────────────────────────────────────── */
+.main-header {
+    text-align: center;
+    padding: 40px 20px;
+}
 
-/* GRID RESPONSIVO */
-.grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+.main-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.main-header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* ─── Contenedor principal ──────────────────────────────────────────────────── */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+/* ─── Tarjeta de rango ──────────────────────────────────────────────────────── */
+.rank-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+}
+
+/* Texto del rango actual (antes era un h1 incorrecto) */
+.rank-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: var(--primary);
+}
+
+.progress-container {
+    background: #000;
+    height: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0%;
+    box-shadow: 0 0 10px var(--primary);
+    transition: width 0.5s ease;
+}
+
+/* ─── Grid responsivo ───────────────────────────────────────────────────────── */
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
 
 @media (min-width: 768px) {
     .grid { grid-template-columns: 1.5fr 1fr; }
     .main-header h1 { font-size: 2.5rem; }
+    .rank-display { font-size: 2.2rem; }
 }
 
-/* Cards */
+/* ─── Tarjetas de tarea ─────────────────────────────────────────────────────── */
+
+/* Resetear estilos de <button> para que luzca como las cards originales */
 .task-card {
-    background: #161b22; padding: 20px; border-radius: 12px;
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 15px; cursor: pointer; border: 1px solid transparent;
+    width: 100%;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
-.task-card:hover { border-color: var(--primary); transform: scale(1.02); background: #1c2128; }
-.task-xp { color: var(--primary); font-weight: bold; font-family: 'Orbitron'; }
+.task-card:hover:not(.task-done) {
+    border-color: var(--primary);
+    transform: scale(1.02);
+    background: #1c2128;
+}
 
-.info-box { background: var(--secondary); padding: 25px; border-radius: 12px; }
+.task-card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Estado: tarea ya completada hoy */
+.task-card.task-done {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.task-card.task-done .task-xp {
+    color: #4caf50;
+}
+
+.task-info h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.task-info small {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.task-xp {
+    color: var(--primary);
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-left: 12px;
+    transition: color 0.3s ease;
+}
+
+/* ─── Sección de consejos ───────────────────────────────────────────────────── */
+.info-box {
+    background: var(--secondary);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.info-box h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.info-box p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
 .btn-action {
-    width: 100%; padding: 12px; margin-top: 15px; border: none;
-    background: var(--primary); color: white; border-radius: 5px;
-    font-weight: bold; cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-action:hover {
+    background: #c62d39;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+.btn-action:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
 }

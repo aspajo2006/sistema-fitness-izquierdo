@@ -4,66 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Entrenamiento | I.E. Francisco Izquierdo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="glow-bg"></div>
-    
-    <nav class="navbar">
-        <div class="logo">F.<span>IZQUIERDO</span></div>
-        <div class="project-tag">PROYECTO ANTI-SEDENTARISMO</div>
-        <div class="user-stats">
-            <div class="stat-item"><i class="fas fa-award"></i> <span id="points-val">0</span> XP</div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div class="glow-bg" aria-hidden="true"></div>
+
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="logo" aria-label="I.E. Francisco Izquierdo">F.<span>IZQUIERDO</span></div>
+        <div class="project-tag" aria-hidden="true">PROYECTO ANTI-SEDENTARISMO</div>
+        <div class="user-stats" style="display:flex; gap:16px; align-items:center;">
+            <div class="stat-item">
+                <i class="fas fa-award" aria-hidden="true"></i>
+                <span id="points-val" aria-label="Puntos XP">0</span> XP
+            </div>
+            <button id="btn-logout" onclick="logout()" style="
+                background:transparent; border:1px solid #444; color:#888;
+                padding:5px 12px; border-radius:6px; font-family:'Poppins',sans-serif;
+                font-size:0.75rem; cursor:pointer; display:none;
+            ">Salir</button>
         </div>
     </nav>
 
     <header class="main-header">
         <h1>SISTEMA DE ENTRENAMIENTO FÍSICO</h1>
-        <p>Promoviendo la salud en el 5to Año de Secundaria - Distrito de Morales</p>
+        <p id="user-greeting">Promoviendo la salud en el 5to Año de Secundaria - Distrito de Morales</p>
     </header>
 
     <main class="container">
-        <section class="rank-card">
-            <h3>NIVEL DE ACTIVIDAD</h3>
-            <h1 id="rank-name">INICIANTE</h1>
-            <div class="progress-container">
+        <section class="rank-card" aria-labelledby="rank-section-title">
+            <h2 id="rank-section-title">NIVEL DE ACTIVIDAD</h2>
+            <p id="rank-name" class="rank-display">INICIANTE</p>
+            <div class="progress-container" role="progressbar" aria-label="Progreso de XP" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-fill" id="xp-bar"></div>
             </div>
             <p>Meta: <span id="next-rank">ESTUDIANTE ACTIVO</span></p>
         </section>
 
         <div class="grid">
-            <section class="card-section">
-                <h3><i class="fas fa-running"></i> Programa de Entrenamiento</h3>
-                <div class="task-card" onclick="completeTask(50, 'Movilidad Articular')">
+            <section class="card-section" aria-labelledby="training-title">
+                <h3 id="training-title"><i class="fas fa-running" aria-hidden="true"></i> Programa de Entrenamiento</h3>
+
+                <button class="task-card" data-xp="50" data-name="Movilidad Articular" data-task-id="movilidad">
                     <div class="task-info">
                         <h4>Movilidad Articular</h4>
                         <small>Calentamiento preventivo - 10 min</small>
                     </div>
                     <div class="task-xp">+50 XP</div>
-                </div>
-                <div class="task-card" onclick="completeTask(100, 'Circuito de Fuerza')">
+                </button>
+
+                <button class="task-card" data-xp="100" data-name="Circuito de Fuerza" data-task-id="circuito">
                     <div class="task-info">
                         <h4>Circuito de Fuerza</h4>
                         <small>Ejercicios funcionales - 25 min</small>
                     </div>
                     <div class="task-xp">+100 XP</div>
-                </div>
+                </button>
             </section>
 
-            <section class="card-section">
-                <h3><i class="fas fa-book-medical"></i> Registro de Actividad</h3>
+            <section class="card-section" aria-labelledby="tips-title">
+                <h3 id="tips-title"><i class="fas fa-book-medical" aria-hidden="true"></i> Registro de Actividad</h3>
                 <div class="info-box">
                     <h4>¿Por qué entrenar?</h4>
                     <p>El sedentarismo afecta el rendimiento académico. ¡Completa tus rutinas diarias para mejorar tu salud y sumar puntos en el sistema!</p>
-                    <button class="btn-action" onclick="showTip()">CONSEJO DE SALUD</button>
+                    <button class="btn-action" id="btn-tip">CONSEJO DE SALUD</button>
                 </div>
             </section>
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

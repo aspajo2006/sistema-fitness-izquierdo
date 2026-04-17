@@ -6,6 +6,22 @@
     --card: #1f2833;
 }
 
+.integrantes {
+    display: flex;
+    flex-wrap: wrap; /* por si no entran todos */
+    gap: 10px;
+    justify-content: center; /* centrado */
+    margin-top: 10px;
+}
+
+.integrantes span {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { background-color: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; }
